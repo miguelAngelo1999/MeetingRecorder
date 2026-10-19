@@ -1,178 +1,235 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0f0f14"/>
-      <stop offset="100%" style="stop-color:#1a1a24"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d0d12"/>
+      <stop offset="100%" stop-color="#161620"/>
     </linearGradient>
-    <linearGradient id="menuGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#2c2c35"/>
-      <stop offset="100%" style="stop-color:#232328"/>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#252530"/>
+      <stop offset="100%" stop-color="#1e1e28"/>
     </linearGradient>
-    <linearGradient id="redGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ff3b30"/>
-      <stop offset="100%" style="stop-color:#c0392b"/>
+    <linearGradient id="redLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff3b30" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#ff3b30"/>
+      <stop offset="80%" stop-color="#ff3b30"/>
+      <stop offset="100%" stop-color="#ff3b30" stop-opacity="0"/>
     </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="6" result="blur"/>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <filter id="softglow">
-      <feGaussianBlur stdDeviation="18" result="blur"/>
+    <filter id="redBloom" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="30" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="8" stdDeviation="20" flood-color="#000" flood-opacity="0.6"/>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="12" stdDeviation="24" flood-color="#000" flood-opacity="0.7"/>
     </filter>
-    <clipPath id="menuClip">
-      <rect x="680" y="130" width="300" height="270" rx="12"/>
-    </clipPath>
+    <!-- subtle noise texture overlay -->
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="overlay" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
   </defs>
 
   <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Noise overlay very subtle -->
+  <rect width="1200" height="630" fill="#ffffff" opacity="0.015" filter="url(#noise)"/>
 
-  <!-- Subtle grid lines -->
-  <g stroke="#ffffff" stroke-opacity="0.025" stroke-width="1">
-    <line x1="0" y1="105" x2="1200" y2="105"/>
-    <line x1="0" y1="210" x2="1200" y2="210"/>
-    <line x1="0" y1="315" x2="1200" y2="315"/>
-    <line x1="0" y1="420" x2="1200" y2="420"/>
-    <line x1="0" y1="525" x2="1200" y2="525"/>
-    <line x1="200" y1="0" x2="200" y2="630"/>
-    <line x1="400" y1="0" x2="400" y2="630"/>
-    <line x1="600" y1="0" x2="600" y2="630"/>
-    <line x1="800" y1="0" x2="800" y2="630"/>
-    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  <!-- Subtle grid -->
+  <g stroke="#ffffff" stroke-opacity="0.03">
+    <line x1="0" y1="157" x2="1200" y2="157"/>
+    <line x1="0" y1="314" x2="1200" y2="314"/>
+    <line x1="0" y1="471" x2="1200" y2="471"/>
+    <line x1="240" y1="0" x2="240" y2="630"/>
+    <line x1="480" y1="0" x2="480" y2="630"/>
+    <line x1="720" y1="0" x2="720" y2="630"/>
+    <line x1="960" y1="0" x2="960" y2="630"/>
   </g>
 
-  <!-- Red glow blob behind mic -->
-  <circle cx="300" cy="320" r="180" fill="#ff3b30" opacity="0.06" filter="url(#softglow)"/>
+  <!-- Red bloom behind left title -->
+  <ellipse cx="220" cy="310" rx="200" ry="160" fill="#ff3b30" opacity="0.05" filter="url(#redBloom)"/>
 
-  <!-- Waveform bars (left side background decoration) -->
-  <g opacity="0.18" fill="#ff3b30">
-    <rect x="60"  y="360" width="6" height="40"  rx="3"/>
-    <rect x="74"  y="340" width="6" height="80"  rx="3"/>
-    <rect x="88"  y="320" width="6" height="120" rx="3"/>
-    <rect x="102" y="300" width="6" height="160" rx="3"/>
-    <rect x="116" y="330" width="6" height="100" rx="3"/>
-    <rect x="130" y="350" width="6" height="60"  rx="3"/>
-    <rect x="144" y="310" width="6" height="140" rx="3"/>
-    <rect x="158" y="290" width="6" height="180" rx="3"/>
-    <rect x="172" y="345" width="6" height="70"  rx="3"/>
-    <rect x="186" y="355" width="6" height="50"  rx="3"/>
+  <!-- Waveform decoration (left) -->
+  <g opacity="0.2">
+    <g fill="#ff3b30">
+      <rect x="52" y="370" width="5" height="32"  rx="2.5"/>
+      <rect x="64" y="350" width="5" height="72"  rx="2.5"/>
+      <rect x="76" y="330" width="5" height="112" rx="2.5"/>
+      <rect x="88" y="295" width="5" height="182" rx="2.5"/>
+      <rect x="100" y="320" width="5" height="132" rx="2.5"/>
+      <rect x="112" y="345" width="5" height="82"  rx="2.5"/>
+      <rect x="124" y="305" width="5" height="162" rx="2.5"/>
+      <rect x="136" y="285" width="5" height="202" rx="2.5"/>
+      <rect x="148" y="340" width="5" height="92"  rx="2.5"/>
+      <rect x="160" y="360" width="5" height="52"  rx="2.5"/>
+    </g>
+    <g fill="#ffffff">
+      <rect x="52" y="395" width="5" height="32"  rx="2.5"/>
+      <rect x="64" y="385" width="5" height="52"  rx="2.5"/>
+      <rect x="76" y="375" width="5" height="72"  rx="2.5"/>
+      <rect x="88" y="360" width="5" height="102" rx="2.5"/>
+      <rect x="100" y="378" width="5" height="66"  rx="2.5"/>
+      <rect x="112" y="388" width="5" height="46"  rx="2.5"/>
+      <rect x="124" y="368" width="5" height="86"  rx="2.5"/>
+      <rect x="136" y="355" width="5" height="112" rx="2.5"/>
+      <rect x="148" y="382" width="5" height="58"  rx="2.5"/>
+      <rect x="160" y="395" width="5" height="32"  rx="2.5"/>
+    </g>
   </g>
-  <g opacity="0.10" fill="#ffffff">
-    <rect x="60"  y="390" width="6" height="40"  rx="3"/>
-    <rect x="74"  y="380" width="6" height="60"  rx="3"/>
-    <rect x="88"  y="370" width="6" height="80"  rx="3"/>
-    <rect x="102" y="360" width="6" height="100" rx="3"/>
-    <rect x="116" y="375" width="6" height="70"  rx="3"/>
-    <rect x="130" y="385" width="6" height="50"  rx="3"/>
-    <rect x="144" y="365" width="6" height="90"  rx="3"/>
-    <rect x="158" y="355" width="6" height="110" rx="3"/>
-    <rect x="172" y="380" width="6" height="60"  rx="3"/>
-    <rect x="186" y="390" width="6" height="40"  rx="3"/>
-  </g>
 
-  <!-- macOS menu bar strip -->
-  <rect x="580" y="60" width="520" height="38" rx="8" fill="#1e1e26" stroke="#3a3a48" stroke-width="1"/>
-  <!-- Menu bar items -->
-  <text x="596" y="84" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="13" fill="#8a8a9a" letter-spacing="0.3">Zoom</text>
-  <text x="644" y="84" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="13" fill="#8a8a9a">File</text>
-  <text x="676" y="84" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="13" fill="#8a8a9a">Edit</text>
-  <text x="710" y="84" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="13" fill="#8a8a9a">View</text>
-  <!-- right side system tray -->
-  <text x="822" y="84" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="12" fill="#6a6a7a">Sat 15:43</text>
-  <!-- Mic icon in menu bar -->
-  <rect x="900" y="67" width="28" height="24" rx="5" fill="#2e2e38"/>
-  <!-- Simple mic shape -->
-  <rect x="912" y="71" width="4" height="8" rx="2" fill="#c8c8d8"/>
-  <path d="M909 77 Q909 83 914 83 Q919 83 919 77" fill="none" stroke="#c8c8d8" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="914" y1="83" x2="914" y2="86" stroke="#c8c8d8" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="911" y1="86" x2="917" y2="86" stroke="#c8c8d8" stroke-width="1.5" stroke-linecap="round"/>
-  <!-- Red recording dot -->
-  <circle cx="923" cy="70" r="4" fill="url(#redGlow)" filter="url(#glow)"/>
-  <circle cx="923" cy="70" r="2.5" fill="#ff3b30"/>
+  <!-- ═══════ LEFT SIDE: Title block ═══════ -->
+  <text x="200" y="243"
+        font-family="Helvetica Neue, Arial, sans-serif"
+        font-size="68" font-weight="800"
+        fill="#f0f0f5"
+        letter-spacing="-2">Meeting</text>
 
-  <!-- Dropdown menu card -->
-  <rect x="680" y="104" width="300" height="278" rx="12" fill="url(#menuGrad)" stroke="#3a3a48" stroke-width="1" filter="url(#shadow)"/>
+  <text x="200" y="318"
+        font-family="Helvetica Neue, Arial, sans-serif"
+        font-size="68" font-weight="800"
+        fill="#ff3b30"
+        letter-spacing="-2">Recorder</text>
 
-  <!-- Menu connector nub -->
-  <path d="M913 104 L920 96 L927 104" fill="#2c2c35" stroke="#3a3a48" stroke-width="1"/>
+  <text x="202" y="356"
+        font-family="Helvetica Neue, Arial, sans-serif"
+        font-size="16.5" font-weight="400"
+        fill="#5c5c6e" letter-spacing="0.4">One-click meeting recorder for macOS</text>
 
-  <!-- Menu item: Stop Recording (highlighted) -->
-  <rect x="688" y="112" width="284" height="36" rx="7" fill="#ff3b30" opacity="0.15"/>
-  <circle cx="708" cy="130" r="6" fill="url(#redGlow)"/>
-  <circle cx="708" cy="130" r="3.5" fill="#ff5f57"/>
-  <text x="724" y="135" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="13.5" fill="#ff6b60" font-weight="500">Stop Recording</text>
+  <!-- Feature tags row -->
+  <!-- Tag 1 -->
+  <rect x="202" y="380" width="146" height="26" rx="13" fill="#1c1c28" stroke="#303042"/>
+  <circle cx="222" cy="393" r="4" fill="#ff3b30"/>
+  <text x="233" y="398"
+        font-family="Helvetica Neue, Arial, sans-serif"
+        font-size="11.5" fill="#7070a0">No host permission</text>
 
-  <!-- Timer line -->
-  <text x="708" y="163" font-family="SF Mono, Menlo, monospace" font-size="11.5" fill="#5a5a6a">  00:42  recording…</text>
+  <!-- Tag 2 -->
+  <rect x="358" y="380" width="138" height="26" rx="13" fill="#1c1c28" stroke="#303042"/>
+  <circle cx="376" cy="393" r="3.5" fill="#34c759"/>
+  <text x="388" y="398"
+        font-family="Helvetica Neue, Arial, sans-serif"
+        font-size="11.5" fill="#7070a0">ScreenCaptureKit</text>
 
-  <!-- Divider -->
-  <line x1="692" y1="180" x2="972" y2="180" stroke="#3a3a48" stroke-width="1"/>
+  <!-- Tag 3 -->
+  <rect x="506" y="380" width="90" height="26" rx="13" fill="#1c1c28" stroke="#303042"/>
+  <text x="551" y="398"
+        font-family="Helvetica Neue, Arial, sans-serif"
+        font-size="11.5" fill="#7070a0" text-anchor="middle">macOS 13+</text>
 
-  <!-- Section header -->
-  <text x="708" y="200" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="11" fill="#4a4a5a" font-weight="600" letter-spacing="0.5">CAPTURE</text>
+  <!-- ═══════ RIGHT SIDE: macOS UI mock ═══════ -->
 
-  <!-- Screen option -->
-  <text x="722" y="222" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="13" fill="#9a9aaa">Screen (Main)  2560×1600</text>
+  <!-- Menu bar strip -->
+  <rect x="630" y="72" width="490" height="36" rx="8" fill="#1a1a24" stroke="#30303e" stroke-width="1"/>
+  <text x="650" y="95" font-family="Helvetica Neue, sans-serif" font-size="13" fill="#777788">Zoom</text>
+  <text x="700" y="95" font-family="Helvetica Neue, sans-serif" font-size="13" fill="#777788">File</text>
+  <text x="734" y="95" font-family="Helvetica Neue, sans-serif" font-size="13" fill="#777788">Edit</text>
+  <text x="770" y="95" font-family="Helvetica Neue, sans-serif" font-size="13" fill="#777788">View</text>
+  <text x="870" y="94" font-family="Helvetica Neue, sans-serif" font-size="12" fill="#55556a">Sat 15:43</text>
 
-  <!-- Section header -->
-  <text x="708" y="248" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="11" fill="#4a4a5a" font-weight="600" letter-spacing="0.5">APP ONLY</text>
+  <!-- Menu bar mic icon box -->
+  <rect x="954" y="78" width="28" height="22" rx="5" fill="#28283a"/>
+  <!-- Mic body -->
+  <rect x="965.5" y="82" width="5" height="8" rx="2.5" fill="#b8b8cc"/>
+  <!-- Mic stand arc -->
+  <path d="M963 88 Q963 95 968 95 Q973 95 973 88"
+        fill="none" stroke="#b8b8cc" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- Mic stand base -->
+  <line x1="968" y1="95" x2="968" y2="98" stroke="#b8b8cc" stroke-width="1.4" stroke-linecap="round"/>
+  <line x1="965" y1="98" x2="971" y2="98" stroke="#b8b8cc" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- Recording dot -->
+  <circle cx="977" cy="81" r="4.5" fill="#ff3b30" filter="url(#glow)"/>
+  <circle cx="977" cy="81" r="3" fill="#ff5040"/>
 
-  <!-- Zoom option (selected) -->
-  <text x="704" y="270" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="13" fill="#e0e0ea">✓</text>
-  <text x="722" y="270" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="13" fill="#e0e0ea" font-weight="500">Zoom</text>
+  <!-- Dropdown card -->
+  <rect x="700" y="114" width="316" height="306" rx="14"
+        fill="url(#cardGrad)" stroke="#2e2e3e" stroke-width="1"
+        filter="url(#cardShadow)"/>
 
-  <!-- Other app -->
-  <text x="722" y="292" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="13" fill="#5a5a6a">Safari</text>
+  <!-- Caret pointing to mic icon -->
+  <path d="M974 114 L981 106 L988 114" fill="#252530" stroke="#2e2e3e" stroke-width="1"/>
 
-  <!-- Divider -->
-  <line x1="692" y1="305" x2="972" y2="305" stroke="#3a3a48" stroke-width="1"/>
+  <!-- ── Stop Recording row (highlighted) ── -->
+  <rect x="710" y="122" width="296" height="38" rx="9" fill="#3a1a1a"/>
+  <!-- Pulsing dot -->
+  <circle cx="730" cy="141" r="7" fill="#ff3b30" opacity="0.25"/>
+  <circle cx="730" cy="141" r="4.5" fill="#ff3b30"/>
+  <text x="748" y="146"
+        font-family="Helvetica Neue, sans-serif"
+        font-size="14" font-weight="600" fill="#ff6050">Stop Recording</text>
+
+  <!-- Timer -->
+  <text x="730" y="177"
+        font-family="Menlo, Courier New, monospace"
+        font-size="11" fill="#484860">00:42  •  recording…</text>
+
+  <!-- Divider 1 -->
+  <line x1="714" y1="194" x2="1002" y2="194" stroke="#2a2a38" stroke-width="1"/>
+
+  <!-- ── CAPTURE section ── -->
+  <text x="730" y="214"
+        font-family="Helvetica Neue, sans-serif"
+        font-size="10.5" font-weight="700" fill="#404055"
+        letter-spacing="0.8">CAPTURE</text>
+
+  <!-- Screen option (unselected) -->
+  <text x="748" y="236"
+        font-family="Helvetica Neue, sans-serif"
+        font-size="13" fill="#6a6a88">Screen (Main)  2560×1600</text>
+
+  <!-- Divider 2 -->
+  <line x1="714" y1="253" x2="1002" y2="253" stroke="#2a2a38" stroke-width="1"/>
+
+  <!-- ── APP ONLY section ── -->
+  <text x="730" y="273"
+        font-family="Helvetica Neue, sans-serif"
+        font-size="10.5" font-weight="700" fill="#404055"
+        letter-spacing="0.8">APP ONLY  (ignores focus)</text>
+
+  <!-- Zoom selected -->
+  <text x="726" y="295"
+        font-family="Helvetica Neue, sans-serif"
+        font-size="13.5" fill="#e0e0f0">&#x2713;</text>
+  <text x="744" y="296"
+        font-family="Helvetica Neue, sans-serif"
+        font-size="13.5" font-weight="600" fill="#e8e8f8">Zoom</text>
+  <!-- small ScreenCaptureKit badge next to Zoom -->
+  <rect x="790" y="283" width="80" height="16" rx="8" fill="#1a2a1a" stroke="#254025"/>
+  <text x="830" y="295"
+        font-family="Helvetica Neue, sans-serif"
+        font-size="9.5" fill="#34c759" text-anchor="middle">ScreenCaptureKit</text>
+
+  <!-- Safari -->
+  <text x="744" y="320"
+        font-family="Helvetica Neue, sans-serif"
+        font-size="13.5" fill="#3c3c58">Safari</text>
+
+  <!-- Divider 3 -->
+  <line x1="714" y1="336" x2="1002" y2="336" stroke="#2a2a38" stroke-width="1"/>
 
   <!-- Quit -->
-  <text x="722" y="328" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="13" fill="#5a5a6a">Quit</text>
+  <text x="744" y="358"
+        font-family="Helvetica Neue, sans-serif"
+        font-size="13.5" fill="#3c3c58">Quit</text>
 
-  <!-- Left side: main title block -->
-  <text x="80" y="238"
-    font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif"
-    font-size="62"
-    font-weight="700"
-    fill="#ffffff"
-    letter-spacing="-1.5">Meeting</text>
-  <text x="80" y="308"
-    font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif"
-    font-size="62"
-    font-weight="700"
-    fill="#ff3b30"
-    letter-spacing="-1.5">Recorder</text>
+  <!-- ── Permission note at bottom of card ── -->
+  <rect x="710" y="372" width="296" height="36" rx="7" fill="#111118"/>
+  <text x="858" y="387"
+        font-family="Helvetica Neue, sans-serif"
+        font-size="10.5" fill="#303048" text-anchor="middle">No BlackHole ·  No Audio MIDI Setup</text>
+  <text x="858" y="401"
+        font-family="Helvetica Neue, sans-serif"
+        font-size="10.5" fill="#303048" text-anchor="middle">System audio captured natively via ScreenCaptureKit</text>
 
-  <!-- Subtitle -->
-  <text x="82" y="348"
-    font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif"
-    font-size="18"
-    fill="#6a6a7e"
-    letter-spacing="0.2">One-click meeting recorder for macOS</text>
-
-  <!-- Feature pills -->
-  <rect x="82" y="376" width="138" height="28" rx="14" fill="#1e1e2e" stroke="#2e2e42"/>
-  <text x="151" y="395" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="12" fill="#7a7a9a" text-anchor="middle">No host permission</text>
-
-  <rect x="230" y="376" width="108" height="28" rx="14" fill="#1e1e2e" stroke="#2e2e42"/>
-  <text x="284" y="395" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="12" fill="#7a7a9a" text-anchor="middle">Screen + Audio + Mic</text>
-
-  <rect x="348" y="376" width="80" height="28" rx="14" fill="#1e1e2e" stroke="#2e2e42"/>
-  <text x="388" y="395" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" font-size="12" fill="#7a7a9a" text-anchor="middle">macOS 13+</text>
-
-  <!-- Bottom: subtle author line -->
+  <!-- ═══ Bottom bar ═══ -->
   <text x="600" y="598"
-    font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif"
-    font-size="12"
-    fill="#3a3a4a"
-    text-anchor="middle"
-    letter-spacing="1">github.com/miguelAngelo1999/MeetingRecorder</text>
+        font-family="Helvetica Neue, sans-serif"
+        font-size="11.5" fill="#303042"
+        text-anchor="middle" letter-spacing="1.2">github.com/miguelAngelo1999/MeetingRecorder</text>
 
-  <!-- Thin red accent line at bottom -->
-  <rect x="0" y="620" width="1200" height="3" fill="url(#redGlow)" opacity="0.6"/>
+  <!-- Bottom red accent -->
+  <rect x="0" y="622" width="1200" height="2.5" fill="url(#redLine)"/>
 </svg>
