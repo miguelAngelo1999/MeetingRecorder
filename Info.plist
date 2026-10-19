@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleName</key>
+  <string>MeetingRecorder</string>
+  <key>CFBundleIdentifier</key>
+  <string>com.meetingrecorder.app</string>
+  <key>CFBundleVersion</key>
+  <string>1.0</string>
+  <key>CFBundleExecutable</key>
+  <string>MeetingRecorder</string>
+  <key>CFBundleIconFile</key>
+  <string>AppIcon</string>
+  <key>LSUIElement</key>
+  <true/>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Meeting Recorder needs your microphone to capture your voice in recordings.</string>
+  <key>NSScreenCaptureUsageDescription</key>
+  <string>Meeting Recorder needs screen capture to record your meeting.</string>
+</dict>
+</plist>

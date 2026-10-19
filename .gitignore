@@ -1,0 +1,11 @@
+# Compiled binary
+MeetingRecorder
+
+# App bundle (built locally)
+*.app
+
+# Icon build artifacts
+AppIcon.icns
+
+# macOS
+.DS_Store
