@@ -1,5 +1,7 @@
 # MeetingRecorder
 
+![MeetingRecorder](banner.svg)
+
 A minimal macOS menu bar app that records Zoom (or any) meetings with **one click** — no host permission needed, no virtual audio drivers, no configuration.
 
 ## Features
